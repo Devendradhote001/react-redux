@@ -6,6 +6,7 @@ const App = () => {
   const dispatch = useDispatch();
   const [amt, setAmt] = useState(0);
   const count = useSelector((state) => state.counter.value);
+
   return (
     <div>
       <h1>hello from app</h1>
