@@ -7,6 +7,7 @@ import {
   loginAction,
   registerAction,
 } from "./features/actions/userAction";
+import AppRouter from "./components/AppRouter";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,13 +15,6 @@ const App = () => {
   const [amt, setAmt] = useState(0);
   const count = useSelector((state) => state.counter.value);
 
-  new Promise((resolve, reject) => {});
-
-  const formSubmit = (data) => {
-    dispatch(loginAction(data));
-    reset();
-    alert("user logged in");
-  };
 
   useEffect(() => {
     dispatch(currentUserAction());
@@ -28,28 +22,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>hello from app</h1>
-      <h2>Count = {count}</h2>
-      <input
-        type="number"
-        placeholder="Amount"
-        onChange={(e) => setAmt(e.target.value)}
-      />
-      <button onClick={() => dispatch(increment())}>Count ++</button>
-      <button onClick={() => dispatch(incrementByAmout(amt))}>
-        Add by amount
-      </button>
-
-      <form onSubmit={handleSubmit(formSubmit)} action="">
-        {/* <input type="text" placeholder="username" {...register("name")} /> */}
-        <input type="email" placeholder="email" {...register("email")} />
-        <input
-          type="password"
-          placeholder="password"
-          {...register("password")}
-        />
-        <button>submit</button>
-      </form>
+      <AppRouter />
     </div>
   );
 };
