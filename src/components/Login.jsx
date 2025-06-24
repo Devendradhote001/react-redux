@@ -1,8 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { loginAction, registerAction } from "../features/actions/userAction";
+// import HomePage from "../pages/HomePage";
+const HomePage = lazy(() => import("../pages/HomePage"));
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -10,8 +12,12 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  
+
   const handleFormSubmit = (data) => {
     dispatch(loginAction(data));
+    navigate("/home");
+    reset();
   };
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
@@ -72,6 +78,12 @@ const Login = () => {
           </a>
         </p>
       </div>
+      <Suspense
+        fallback={<div className="text-white">Loading component....</div>}
+      >
+        <HomePage />
+      </Suspense>
+      
     </div>
   );
 };

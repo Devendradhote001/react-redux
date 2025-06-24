@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import Login from "./Login";
 import Register from "./Register";
 import HomePage from "../pages/HomePage";
+import ProtectedRoute from "./ProtectedRoute";
 
 const AppRouter = () => {
   return (
@@ -10,7 +11,16 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route
+          path="/home"
+          element={
+            <>
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            </>
+          }
+        />
       </Routes>
     </div>
   );
